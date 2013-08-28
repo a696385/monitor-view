@@ -1,0 +1,15 @@
+<div class="row">
+    <ul ui-sortable="sortableOptions" ng-model="blocks" class="list-unstyled charts">
+        <li ng-repeat="item in blocks">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 one-row chart-cel" ng-class="{'two-row': item.size.row == 2, 'col-lg-12 col-md-12 col-sm-12 col-xs-12': item.size.cel == 2}">
+                <div>
+                    <div class="btn-group control-buttons">
+                        <button class="btn btn-default" ng-click="chartEdit($index)"><span class="glyphicon glyphicon-edit"></span></button>
+                        <div class="handle btn btn-default"><span class="glyphicon glyphicon-list"></span></div>
+                    </div>
+                    <chart chart-type="StockChart" chart-data="item.data" chart-height="item.size.row*400"></chart>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

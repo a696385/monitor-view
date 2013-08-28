@@ -1,0 +1,37 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Chart settings - {{result.title}}</h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="row">
+                    <label class="control-label col-lg-2" for="select-height">Height</label>
+                    <div class="col-lg-2">
+                        <select class="form-control" id="select-height" ng-model="result.height" ng-options="h for h in options.height"></select>
+                    </div>
+                    <label class="control-label col-lg-2" for="select-width">Width</label>
+                    <div class="col-lg-2">
+                        <select class="form-control" id="select-width" ng-model="result.width" ng-options="w for w in options.width"></select>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <label class="control-label col-lg-2" for="select-title">Title</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" id="select-title" ng-model="result.title">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <label class="control-label col-lg-2" for="select-subtitle">Subtitle</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="select-subtitle" ng-model="result.subtitle">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button ng-click="close('ok', result)" class="btn btn-primary" >Save</button>
+            <button ng-click="close('cancel')" class="btn btn-default" >Cancel</button>
+        </div>
+    </div>
+</div>

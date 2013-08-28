@@ -1,0 +1,25 @@
+{
+  "name": "monitor-view",
+  "version": "0.0.1",
+  "description": "Monitor system worker",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a696385/monitor-view"
+  },
+  "author": "andy@away.name",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/a696385/monitor-view/issues"
+  },
+  "dependencies": {
+    "redis": "~0.8.4",
+    "hiredis": "~0.1.15",
+    "swift.utils": "git+https://github.com/gamover/swift.utils.git#v.0.0",
+    "swift.db": "git+https://github.com/gamover/swift.db.git#v.0.0",
+    "swift.logger": "git+https://github.com/gamover/swift.logger.git#v.0.0",
+    "swift.helpers": "git+https://github.com/gamover/swift.helpers.git#v.0.0",
+    "swift.mvc": "git+https://github.com/gamover/swift.mvc.git#v.0.0",
+    "async": "0.2.9"
+  }
+}
