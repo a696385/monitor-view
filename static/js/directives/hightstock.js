@@ -21,7 +21,7 @@ angular.module('monitor')
                 $(element[0]).height(scope.chartHeight || 400);
                 var chartsDefaults = {
                     chart: {
-                        renderTo: element[0],
+                        //renderTo: element[0],
                         type: attrs.type || null,
                         height: attrs.height || null,
                         width: attrs.width || null
@@ -35,10 +35,13 @@ angular.module('monitor')
                     var deepCopy = true;
                     var newSettings = {};
                     $.extend(deepCopy, newSettings, chartsDefaults, scope.chartData);
+                    var chart = $(element[0]).highcharts();
+                    if (chart) chart.destroy();
+
                     if (!scope.chartType){
-                        new Highcharts.Chart(newSettings);
+                        $(element[0]).highcharts(newSettings);
                     } else {
-                        new Highcharts.Chart(scope.chartType, newSettings);
+                        $(element[0]).highcharts(scope.chartType, newSettings);
                     }
                 });
             }

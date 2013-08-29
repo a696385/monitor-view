@@ -27,6 +27,30 @@
                         <input type="text" class="form-control" id="select-subtitle" ng-model="result.subtitle">
                     </div>
                 </div>
+                <div class="row" style="margin-top: 10px">
+                    <label class="col-lg-2 col-md-2 col-sm-2 control-label">Series</label>
+                    <div class="col-lg-10 col-md-10 col-sm-10">
+                        <div ng-repeat="item in result.series">
+                            <div class="row position-normal" style="margin-bottom: 5px">
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <select class="col-lg-12 col-md-12 col-sm-12" ui-select2 ng-model="item.counter" ng-required="true">
+                                        <option ng-repeat="c in refs.counters" value="{{ c }}">{{ c }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                    <select class="col-lg-12 col-md-12 col-sm-12" ui-select2 ng-model="item.instance" ng-required="true">
+                                        <option ng-repeat="c in refs.instances" value="{{ c.name }}">{{ c.name }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <ui-colorpicker ng-model="item.color"></ui-colorpicker>
+                                    <button type="button" class="btn btn-danger btn-sm" ng-click="removeSeries($index)"> <span class="glyphicon glyphicon-minus"></span> </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-success btn-sm" ng-click="addSeries()"><span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">

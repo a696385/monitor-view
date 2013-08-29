@@ -9,7 +9,9 @@ var $path = require('path'),
     $swift = require('swift.mvc'),
 
     $express = $swift.express,
-    $memoryStore = $express.session.MemoryStore;
+    $memoryStore = $express.session.MemoryStore,
+
+    $redis = require('redis');
 
 var errors = require('./app/helpers/errors'),
     logger = require('./app/helpers/logger');
@@ -97,8 +99,52 @@ $swift.disableLog().init(function (err, app)
         data: $swift.require(':app/config/user.json'),
         save: function(callback){
             $fs.writeFile($path.join(__dirname, 'app', 'config', 'user.json'), JSON.stringify(this.data, null, 4), callback);
+            $swift.extra('db').connect();
         }
     });
+    $swift.extra('db', {
+        config: $swift.extra('config'),
+        read: null,
+        write: null,
+        _connected: {
+            read: false,
+            write: false
+        },
+        connect: function(){
+            var self = this;
+            self.disconnect();
+            if ((config.data || {}).server == null) return;
+            this.write = $redis.createClient(this.config.data.server.port, this.config.data.server.host, this.config.data.server.options);
+            this.write.on('connect', function(){
+                self._connected.write = true;
+            });
+            this.write.on('error', function(err){
+                self._connected.write = false;
+            });
+
+            this.read = $redis.createClient(this.config.data.server.port, this.config.data.server.host, this.config.data.server.options);
+            this.read.on('connect', function(){
+                self._connected.read = true;
+            });
+            this.read.on('error', function(err){
+                self._connected.read = false;
+            });
+        },
+        disconnect: function(){
+            if (this.write) {
+                this.write.end();
+                this.write = null;
+            }
+            if (this.read) {
+                this.read.end();
+                this.read = null;
+            }
+        }
+    });
+    var config = $swift.extra('config');
+    if ((config.data || {}).server != null){
+        $swift.extra('db').connect();
+    }
     $swift.moduleManager
         .loadModule('store')
         .loadModule('frontend')

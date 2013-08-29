@@ -8,7 +8,18 @@ var util = require('util');
 module.exports = exports = {
     S1000: "Can not start swift",
     C1000: "Can not get config",
-    C1001: "Can not set config"
+    C1001: "Can not set config",
+    C1003: "Can not get counters",
+    C1004: "Can not set counters",
+    C1005: "Can not get instances",
+    C1006: "Can not set instances",
+    C1007: "Can not get blocks",
+    C1008: "Can not set blocks",
+    C1009: "Can not create block",
+    C1010: "Can not remove block",
+    C1011: "Can not sort blocks",
+    C1012: "Can not get stat",
+    R1000: "Redis not connected"
 };
 
 /**

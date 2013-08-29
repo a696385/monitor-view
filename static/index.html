@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/vendor/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="./css/vendor/bootstrap/bootstrap-glyphicons.css">
     <link rel="stylesheet" href="./css/vendor/select2.css">
+    <link rel="stylesheet" href="./css/vendor/spectrum.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
@@ -42,7 +43,7 @@
                     <li ng-class="{true: 'active', false: ''}[isIndex]"><a href="{{ getUri('index') }}">Home</a></li>
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right" ng-controller="HomeCtrl" ng-show="isIndex">
+                <ul class="nav navbar-nav navbar-right" ng-show="isIndex">
                     <li ng-show="connection == null"><a href="#" ng-click="selectServer()">Connect</a></li>
                     <li ng-show="connection != null"><a href="#" ng-click="disconnect()">Redis: {{ connection.host }}:{{ connection.port }}</a></li>
                 </ul>
@@ -72,7 +73,8 @@
 <script src="./js/vendor/angular-ui.sortable.js"></script>
 <script src="./js/vendor/ui-bootstrap-custom-0.5.0.min.js"></script>
 <script src="./js/vendor/ui-select2.js"></script>
-<script src="http://code.highcharts.com/stock/highstock.js"></script>
+<script src="./js/vendor/spectrum.js"></script>
+<script src="./js/vendor/highstock.js"></script>
 
 
 <script src="./js/routingConfig.js"></script>
@@ -81,13 +83,19 @@
 <script src="./js/controllers/navigation.js"></script>
 <script src="./js/controllers/home.js"></script>
 <script src="./js/controllers/alert.js"></script>
+<script src="./js/controllers/chart.properties.js"></script>
 
 <script src="./js/services/config/server.js"></script>
+<script src="./js/services/refs.js"></script>
+<script src="./js/services/blocks.js"></script>
+<script src="./js/services/stat.js"></script>
 
 <script src="./js/directives/onblur.js"></script>
 <script src="./js/directives/onchange.js"></script>
 <script src="./js/directives/fadetoggle.js"></script>
 <script src="./js/directives/hightstock.js"></script>
+<script src="./js/directives/colorpicker.js"></script>
+
 
 
 </body>

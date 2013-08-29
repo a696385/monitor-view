@@ -20,6 +20,7 @@
     "swift.logger": "git+https://github.com/gamover/swift.logger.git#v.0.0",
     "swift.helpers": "git+https://github.com/gamover/swift.helpers.git#v.0.0",
     "swift.mvc": "git+https://github.com/gamover/swift.mvc.git#v.0.0",
-    "async": "0.2.9"
+    "async": "0.2.9",
+    "uuid": "~1.4.1"
   }
 }

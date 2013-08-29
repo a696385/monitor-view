@@ -25,7 +25,7 @@ angular.module('monitor', [
         //'ui.bootstrap.accordion',
         //'ui.bootstrap.typeahead',
         'ui.bootstrap.dialog',
-        //'ui.bootstrap.alert',
+        'ui.bootstrap.alert',
         //'ui.bootstrap.datepicker',
         //'ui.bootstrap.dropdownToggle',
         'ui.select2'
@@ -88,10 +88,12 @@ angular.module('monitor', [
 
     .value('uiSortableConfig', {
         placeholder: 'placeholder',
-        handle: '.handle'
+        handle: '.handle',
+        forcePlaceholderSize: true,
+        distance: 12
     })
 
-    .run(['$rootScope', '$location', '$timeout', function ($rootScope, $location, $timeout) {
+    .run(['$rootScope', '$location', '$timeout', '$dialog', 'config.Server', function ($rootScope, $location, $timeout, $dialog, configServer) {
 
         $rootScope.getUri = function(route, hash){
             if (hash == null) hash = true;
@@ -101,6 +103,45 @@ angular.module('monitor', [
             if (hash == null) hash = true;
             return $rootScope.getUri(route, hash).replace(':id', id);
         };
+
+        $rootScope.connection = null;
+        $rootScope.selectServer = function(){
+            var d = $dialog.dialog({
+                backdrop: true,
+                keyboard: true,
+                backdropClick: true,
+                templateUrl: 'template/components/server.select.html',
+                controller: 'ServerSelectCtrl'
+            });
+            d.open().then(function(result){
+                if(result){
+                    configServer.set(result).then(function(data){
+                        $rootScope.connection = result;
+                        console.log('Server config saved');
+                    }, function(err){
+                        $rootScope.showError(err);
+                        console.error(err);
+                    });
+                }
+            });
+        };
+        $rootScope.disconnect = function(){
+            configServer.set(null).then(function(data){
+                $rootScope.connection = null;
+                console.log('Server config saved');
+            }, function(err){
+                $rootScope.showError(err);
+                console.error(err);
+            });
+        };
+
+        configServer.get().then(function(data){
+            $rootScope.connection = data;
+        }, function(err){
+            $rootScope.showError(err);
+            console.error(err);
+        });
+
         $timeout(function(){
             $rootScope.hideSplash = true;
         }, 1000);
