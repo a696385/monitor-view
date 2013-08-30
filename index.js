@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Powered by Andy <andy@away.name>
  * Date: 28.08.13
