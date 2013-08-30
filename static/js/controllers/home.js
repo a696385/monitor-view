@@ -207,7 +207,7 @@ angular.module('monitor')
                     if (block.data == null) return;
                     for(var i = 0; i < block.series.length; i++){
                         var series = block.series[i],
-                            info = dataInfo[block.id] || {};
+                            info = dataInfo[block.id] || {lastObject: {}};
                         var obj = {
                             counter: series.counter,
                             instance: series.instance,
@@ -218,8 +218,8 @@ angular.module('monitor')
                             block: block,
                             seriesIndex: i
                         };
-                        if (info.lastObject != null){
-                            obj.lastLoad = info.lastObject.date;
+                        if (info.lastObject[i] != null){
+                            obj.lastLoad = info.lastObject[i].date;
                         } else {
                             obj.lastLoad = new Date();
                         }
@@ -240,7 +240,7 @@ angular.module('monitor')
                            data = result[i].data;
                         if (dataInfo[dist.block.id] == null){
                             dataInfo[dist.block.id] = {
-                                lastObject: {date: new Date(), value: 0},
+                                lastObject: {},
                                 data: {}
                             }
                         }
@@ -250,7 +250,7 @@ angular.module('monitor')
                             var arr = dataInfo[dist.block.id].data[dist.seriesIndex];
 
                             arr.push({date: new Date(data[j].date), value: data[j].value});
-                            dataInfo[dist.block.id].lastObject = arr[arr.length-1];
+                            dataInfo[dist.block.id].lastObject[dist.seriesIndex] = arr[arr.length-1];
                         }
 
                     }

@@ -20,6 +20,7 @@ exports.get = function(data, callback){
         var id = el.id,
             lastLoad = (el.lastLoad != null ? new Date(el.lastLoad) : null),
             group = 'counters:' + el.counter + ':' + el.instance + ':';
+        if (lastLoad != null) lastLoad.setMilliseconds(0);
         if (result[id] == null) result[id] = {id: id, data: []};
 
         db.read.keys(group + '*', function(err, keys){
@@ -32,7 +33,7 @@ exports.get = function(data, callback){
 
                 var date = new Date(key.substring(group.length));
                 date.setMilliseconds(0);
-                if (lastLoad != null && lastLoad >= date) {
+                if (lastLoad != null && lastLoad > date) {
                     next();
                     return;
                 }
