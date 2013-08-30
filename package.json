@@ -24,6 +24,6 @@
     "uuid": "~1.4.1"
   },
   "bin": {
-      "monitor-view": "./index.js"
+      "monitor-view": "./bin/monitor-view.js"
   }
 }
