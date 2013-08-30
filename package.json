@@ -22,5 +22,8 @@
     "swift.mvc": "git+https://github.com/gamover/swift.mvc.git#v.0.0",
     "async": "0.2.9",
     "uuid": "~1.4.1"
+  },
+  "bin": {
+      "monitor-view": "./index.js"
   }
 }

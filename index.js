@@ -155,6 +155,8 @@ $swift.disableLog().init(function (err, app)
                 logger.log('error', new errors.S1000(err));
                 throw err;
             }
+            var config = $swift.configurator.getConfig();
+            console.log("View monitor on http://" +  config.swift.server.ip + ":" + config.swift.server.port);
         })
     ;
     //
