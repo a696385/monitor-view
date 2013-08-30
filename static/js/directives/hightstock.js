@@ -48,3 +48,10 @@ angular.module('monitor')
         };
 
     });
+
+
+Highcharts.setOptions({
+    global: {
+        useUTC: false
+    }
+});

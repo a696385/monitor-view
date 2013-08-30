@@ -1,45 +1,4 @@
 {
-    "server": {
-        "host": "localhost",
-        "port": 6379
-    },
-    "blocks": [
-        {
-            "size": {
-                "cel": 2,
-                "row": 1
-            },
-            "title": "CPU Redfog",
-            "subtitle": null,
-            "series": [
-                {
-                    "counter": "CPU",
-                    "instance": "realweb.lan",
-                    "color": "#205fc9"
-                }
-            ],
-            "id": "66fc650f-f8e6-4ade-9e1b-3938d3b0492d"
-        },
-        {
-            "size": {
-                "cel": 2,
-                "row": 1
-            },
-            "title": "Memory RedFog",
-            "subtitle": null,
-            "series": [
-                {
-                    "counter": "Memory",
-                    "instance": "realweb.lan",
-                    "color": "#028b6c"
-                },
-                {
-                    "counter": "Memory",
-                    "instance": "test",
-                    "color": "#b6db2a"
-                }
-            ],
-            "id": "505d1fa8-4b35-4a91-93b9-bc8e95ef8a57"
-        }
-    ]
+    "server": null,
+    "blocks": []
 }
